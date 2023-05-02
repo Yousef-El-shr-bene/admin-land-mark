@@ -41,7 +41,7 @@ export default function Home() {
 <div className='flex justify-center ' >
   <div>{loding}</div>
     <div className='w-full h-auto flex flex-wrap ' >
-    {data.map((el,i)=>{
+    {data.map((el : any ,i): JSX.Element=>{
       return <Crd customerName={el.customerName} email={el.email} feedback={el.Feedback} phoneNumber={el.phoneNumber} sell={el.sell === true ? "sell" : "rent"} time={el.time}  key={i} id={el.id}  />
     })}
     </div>
