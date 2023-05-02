@@ -1,7 +1,4 @@
-import {
-  signingInWithEmailAndPassword,
-  createUserWithEmailAndPasswordd,
-} from "../../../firebase";
+import { signingInWithEmailAndPassword } from "../../../firebase";
 import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const data = await request.json();
