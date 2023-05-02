@@ -1,11 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
+export default function Adduser() {
 
-export default function page() {
   const userref = useRef(null);
   const passref = useRef(null);
   const [error, seterror] = useState("");
   const [loding, setloding] = useState("");
+
   async function handelsubmit() {
     setloding("hidden");
     seterror("Loding...");
