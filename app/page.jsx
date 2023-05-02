@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { Hind_Siliguri } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -18,8 +17,6 @@ export default function Home() {
     if (localStorage.uid) {
       router.push("/home");
     }
-
-    return () => {};
   }, []);
 
   async function onsupmet() {
