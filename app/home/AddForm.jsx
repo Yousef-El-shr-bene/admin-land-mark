@@ -22,10 +22,12 @@ export default function AddForm() {
       sell === null
     ) {
       seterror("input Empty");
-      console.log(phoneNumberref.current.value);
-    } else if (phoneNumberref.current.value.length > 11 || phoneNumberref.current.value.length < 11){
-      seterror("Phone number must be 11 digits")
-    }else {
+    } else if (
+      phoneNumberref.current.value.length > 11 ||
+      phoneNumberref.current.value.length < 11
+    ) {
+      seterror("Phone number must be 11 digits");
+    } else {
       const data = await fetch("http://localhost:3000/api/addform", {
         method: "POST",
         body: JSON.stringify({

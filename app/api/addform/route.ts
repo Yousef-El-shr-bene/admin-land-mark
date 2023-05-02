@@ -1,10 +1,17 @@
-import { addform } from '../../../firebase'
-import { NextResponse } from 'next/server';
+import { addform } from "../../../firebase";
+import { NextResponse } from "next/server";
 export async function POST(request: Request) {
-  const form = await request.json()
-  
-  await addform(form.ApartmentData ,form.Feedback , form.customerName ,form.email ,form.phoneNumber , form.sell === "true" ? true : false ,form.uid)
+  const form = await request.json();
 
-  
-  return  NextResponse.json("ok")
+  await addform(
+    form.ApartmentData,
+    form.Feedback,
+    form.customerName,
+    form.email,
+    form.phoneNumber,
+    form.sell === "true" ? true : false,
+    form.uid
+  );
+
+  return NextResponse.json("ok");
 }

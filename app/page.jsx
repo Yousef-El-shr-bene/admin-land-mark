@@ -12,23 +12,21 @@ export default function Home() {
   const userRef = useRef(null);
   const passRef = useRef(null);
   const [error, seterror] = useState("");
-  const [btn , setbtn] = useState("")
+  const [btn, setbtn] = useState("");
   const router = useRouter();
   useEffect(() => {
     if (localStorage.uid) {
       router.push("/home");
     }
-  
-    return () => {
-      
-    }
-  }, [])
-  
+
+    return () => {};
+  }, []);
+
   async function onsupmet() {
     if (userRef.current.value === "" || passRef.current.value === "") {
       seterror("empty value");
     } else {
-      setbtn("hidden")
+      setbtn("hidden");
       seterror("loding...");
       const data = await fetch("http://localhost:3000/api/Auth", {
         method: "POST",
@@ -40,23 +38,23 @@ export default function Home() {
         const yser = await data.json();
         if (yser.error) {
           if (yser.error === "auth/user-not-found") {
-            seterror("user not found")
-          }else if (yser.error === "auth/invalid-email"){
-            seterror("invalid email")
-          }else if ( yser.error === "auth/wrong-password"){
-            seterror("wrong password")
+            seterror("user not found");
+          } else if (yser.error === "auth/invalid-email") {
+            seterror("invalid email");
+          } else if (yser.error === "auth/wrong-password") {
+            seterror("wrong password");
           }
-          console.log(yser.error); 
+          console.log(yser.error);
         } else {
-          localStorage.setItem("uid" ,yser.re.user.uid)
-          localStorage.setItem("email" ,yser.re.user.email)
+          localStorage.setItem("uid", yser.re.user.uid);
+          localStorage.setItem("email", yser.re.user.email);
           console.log(yser);
           router.push("/home");
         }
       });
     }
     console.log(userRef.current.value, passRef.current.value);
-    setbtn("")
+    setbtn("");
   }
 
   return (
