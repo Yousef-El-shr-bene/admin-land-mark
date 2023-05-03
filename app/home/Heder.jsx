@@ -56,9 +56,10 @@ export default function Heder() {
           >
             log out
           </a>
+          <div className='flex justify-center items-center m-1 p-1' >{druphedr}</div>
         </div>
       </header>
-      <div>{druphedr}</div>
+
     </>
   );
 }
