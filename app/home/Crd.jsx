@@ -1,4 +1,5 @@
 "use client";
+import cookie from 'js-cookie'
 import React, { useState } from "react";
 
 export default function Crd({
@@ -12,6 +13,7 @@ export default function Crd({
 }) {
   const [loding, setloding] = useState("");
   const [hidden, sethidden] = useState("");
+  const coo = cookie.get("email")
   let unix_timestamp = time.seconds;
   let date = new Date(unix_timestamp * 1000);
   async function delet() {
@@ -51,7 +53,7 @@ export default function Crd({
           time : {date.toLocaleTimeString("default")} -{" "}
           {date.toLocaleDateString("default")}
         </h3>
-        {localStorage.email === "mena@lm.com" || loding === "" ? el : ""}
+        {coo === "mena@lm.com" || loding === "" ? el : ""}
       </div>
     </>
   );

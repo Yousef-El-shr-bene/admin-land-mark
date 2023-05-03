@@ -1,15 +1,17 @@
 "use client";
+import cookie from 'js-cookie'
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 export default function Heder() {
+  const em = cookie.get("email")
   const router = useRouter();
   const [druphedr, setdruphedr] = useState(<></>);
   useEffect(() => {
-    if (!localStorage.uid) {
-      router.puch("/");
+    if (cookie.get("uid") === undefined) {
+      router.push("/");
     }
-    if (localStorage.uid === "TJJAldJBw8PMO633BH15TL7v88w2") {
+    if (cookie.get("uid") === "TJJAldJBw8PMO633BH15TL7v88w2") {
       setdruphedr(
         <>
           <div>
@@ -26,18 +28,19 @@ export default function Heder() {
   }, []);
 
   function out() {
-    localStorage.removeItem("uid");
-    localStorage.removeItem("email");
+    cookie.remove("uid")
+    cookie.remove("email");
     router.push("/");
   }
+  console.log(em);
   return (
     <>
       <header className="w-full bg-slate-100 drop-shadow flex justify-around items-center h-20  ">
-        <h1 className="bg-teal-200 rounded-lg p-2">{localStorage.email}</h1>
+        <h1 className="bg-teal-200 rounded-lg p-2">{em}</h1>
         <div className="flex">
           <Link
             className="bg-slate-500 m-1 p-1 rounded hover:bg-slate-400 text-white "
-            href="/form"
+            href={`/form`}
           >
             Add data
           </Link>
@@ -47,12 +50,12 @@ export default function Heder() {
           >
             preview data
           </Link>
-          <h1
+          <a
             className="bg-slate-500 m-1 p-1 rounded hover:bg-slate-400 text-white "
             onClick={out}
           >
             log out
-          </h1>
+          </a>
         </div>
       </header>
       <div>{druphedr}</div>

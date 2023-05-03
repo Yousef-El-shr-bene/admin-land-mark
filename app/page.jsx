@@ -1,6 +1,7 @@
 "use client";
+import cookie from "js-cookie";
 import { Hind_Siliguri } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 const inter = Hind_Siliguri({
   subsets: ["latin-ext"],
@@ -13,12 +14,6 @@ export default function Home() {
   const [error, seterror] = useState("");
   const [btn, setbtn] = useState("");
   const router = useRouter();
-  useEffect(() => {
-    if (localStorage.uid) {
-      router.push("/home");
-    }
-  }, []);
-
   async function onsupmet() {
     if (userRef.current.value === "" || passRef.current.value === "") {
       seterror("empty value");
@@ -28,8 +23,8 @@ export default function Home() {
       const data = await fetch("http://localhost:3000/api/Auth", {
         method: "POST",
         body: JSON.stringify({
-          username: userRef.current.value,
-          password: passRef.current.value,
+          username: userRef.current.value.trim(),
+          password: passRef.current.value.trim(),
         }),
       }).then(async (data) => {
         const yser = await data.json();
@@ -41,16 +36,13 @@ export default function Home() {
           } else if (yser.error === "auth/wrong-password") {
             seterror("wrong password");
           }
-          console.log(yser.error);
         } else {
-          localStorage.setItem("uid", yser.re.user.uid);
-          localStorage.setItem("email", yser.re.user.email);
-          console.log(yser);
-          router.push("/home");
+          cookie.set("uid", yser.re.user.uid);
+          cookie.set("email", yser.re.user.email);
+          router.push(`/home`);
         }
       });
     }
-    console.log(userRef.current.value, passRef.current.value);
     setbtn("");
   }
 

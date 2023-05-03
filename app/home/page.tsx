@@ -1,18 +1,25 @@
 "use client";
+import cookie from 'js-cookie'
 import { Hind_Siliguri } from "next/font/google";
 import { useEffect, useState } from "react";
 import Crd from "./Crd";
-
+import Heder from "./Heder";
+import { useRouter } from "next/navigation";
 const inter = Hind_Siliguri({
   subsets: ["latin-ext"],
   weight: "400",
 });
 
-export default function Home() {
+export default function Homepage(): JSX.Element {
   const [data, setdata] = useState([]);
   const [loding, setloding] = useState("");
+  const rout = useRouter()
   useEffect(() => {
-    dataoutbot();
+    if (cookie.get("email") !== undefined) {
+      dataoutbot();
+    }else{
+      rout.push("/")
+    }
   }, []);
 
   async function dataoutbot() {
@@ -21,9 +28,9 @@ export default function Home() {
     await fetch("http://localhost:3000/api/gitforms", {
       method: "POST",
       body: JSON.stringify({
-        email: localStorage.email,
+        email: cookie.get("email"),
       }),
-    }).then(async (d) => {
+    }).then(async (d)=>{
       const thedata = await d.json();
       dd = thedata;
     });

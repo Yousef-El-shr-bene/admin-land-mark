@@ -1,6 +1,10 @@
 import { Inter } from "next/font/google";
-import Heder from "./Heder";
+import Heder from './Heder'
 const inter = Inter({ subsets: ["latin"] });
+
+interface Page {
+  params : {name : string}
+}
 
 export const metadata = {
   title: "admin-land-mark",
@@ -8,10 +12,10 @@ export const metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
-}) {
+}): JSX.Element {
   return (
     <div>
       <Heder />

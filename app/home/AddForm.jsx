@@ -1,4 +1,5 @@
 "use client";
+import cookie from 'js-cookie'
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 export default function AddForm() {
@@ -34,10 +35,10 @@ export default function AddForm() {
           ApartmentData: ApartmentDataref.current.value,
           Feedback: Feedbackref.current.value,
           customerName: customerNameref.current.value,
-          email: window.localStorage.email,
+          email: cookie.get("email"),
           phoneNumber: phoneNumberref.current.value,
           sell: sell,
-          uid: window.localStorage.uid,
+          uid: cookie.get("uid"),
         }),
       }).then(async (data) => {
         router.push("/home");
