@@ -20,7 +20,7 @@ export default function Home() {
     } else {
       setbtn("hidden");
       seterror("loding...");
-      const data = await fetch("http://localhost:3000/api/Auth", {
+      const data = await fetch(`/api/Auth`, {
         method: "POST",
         body: JSON.stringify({
           username: userRef.current.value.trim(),

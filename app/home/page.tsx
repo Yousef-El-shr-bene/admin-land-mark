@@ -25,7 +25,7 @@ export default function Homepage(): JSX.Element {
   async function dataoutbot() {
     setloding("loding...");
     let dd: any;
-    await fetch("http://localhost:3000/api/gitforms", {
+    await fetch("/api/gitforms", {
       method: "POST",
       body: JSON.stringify({
         email: cookie.get("email"),

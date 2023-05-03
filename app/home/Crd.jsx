@@ -19,7 +19,7 @@ export default function Crd({
   async function delet() {
     setloding("loding...");
     sethidden("hidden");
-    await fetch("http://localhost:3000/api/DeleteFrom", {
+    await fetch("/api/DeleteFrom", {
       method: "POST",
       body: JSON.stringify({
         id: id,

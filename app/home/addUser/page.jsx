@@ -13,7 +13,7 @@ export default function Adduser() {
     if (userref.current.value === "" || passref.current.value === "") {
       seterror("input Empty");
     } else {
-      const data = await fetch("http://localhost:3000/api/addUser", {
+      const data = await fetch("/api/addUser", {
         method: "POST",
         body: JSON.stringify({
           username: userref.current.value,

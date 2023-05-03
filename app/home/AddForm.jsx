@@ -29,7 +29,7 @@ export default function AddForm() {
     ) {
       seterror("Phone number must be 11 digits");
     } else {
-      const data = await fetch("http://localhost:3000/api/addform", {
+      const data = await fetch("/api/addform", {
         method: "POST",
         body: JSON.stringify({
           ApartmentData: ApartmentDataref.current.value,
