@@ -20,7 +20,7 @@ export default function Homepage(): JSX.Element {
     }else{
       rout.push("/")
     }
-  }, []);
+  }, [rout]);
 
   async function dataoutbot() {
     setloding("loding...");

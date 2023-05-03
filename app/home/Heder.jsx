@@ -25,7 +25,7 @@ export default function Heder() {
         </>
       );
     }
-  }, []);
+  }, [router]);
 
   function out() {
     cookie.remove("uid")
