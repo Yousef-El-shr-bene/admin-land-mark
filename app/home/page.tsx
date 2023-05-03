@@ -8,7 +8,7 @@ const inter = Hind_Siliguri({
   subsets: ["latin-ext"],
   weight: "400",
 });
-
+ 
 export default function Homepage(): JSX.Element {
   const [data, setdata] = useState([]);
   const [loding, setloding] = useState("");
