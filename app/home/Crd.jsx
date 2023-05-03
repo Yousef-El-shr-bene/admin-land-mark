@@ -53,7 +53,7 @@ export default function Crd({
           time : {date.toLocaleTimeString("default")} -{" "}
           {date.toLocaleDateString("default")}
         </h3>
-        {coo === "mena@lm.com" || loding === "" ? el : ""}
+        {coo === "mena@lm.com"  ?  el : ""}
       </div>
     </>
   );
